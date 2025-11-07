@@ -5,7 +5,7 @@ import { jsPDF } from "jspdf";
 interface Results {
     riskLevel: string;
     riskScore: GLfloat;
-    variables: string;
+    confidence: string;
     plan: string;
 };
 
@@ -36,9 +36,9 @@ export default function ResultsView({ results }: { results: Results }) {
         doc.text(String(results.riskScore), 60, 45);
 
         doc.setFont("helvetica", "bold");
-        doc.text("Variables y patrones detectados:", 14, 60);
+        doc.text("Puntaje de Credibilidad:", 14, 60);
         doc.setFont("helvetica", "regular");
-        doc.text(doc.splitTextToSize(results.variables, 180), 14, 68);
+        doc.text(doc.splitTextToSize(results.confidence, 180), 14, 60);
 
         doc.setFont("helvetica", "bold");
         doc.text("Plan de acción:", 14, 90);
@@ -63,9 +63,9 @@ export default function ResultsView({ results }: { results: Results }) {
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
                 {results.riskScore}
             </label>
-            <h3 className="mt-2">Variables y patrones detectados</h3>
+            <h3 className="mt-2">Puntaje de Credibilidad</h3>
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
-                {results.variables}
+                {results.confidence}
             </label>
             <h3 className="mt-2">Plan de acción</h3>
             <textarea
