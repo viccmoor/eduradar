@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import React, { useState } from "react";
-import { IdentificationIcon } from "@heroicons/react/24/solid";
+import { IdentificationIcon, DocumentMagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import ResultsView from "@/components/ResultsView";
 
 export default function CustomForm() {
@@ -44,14 +44,14 @@ export default function CustomForm() {
     return (
         <div className="flex gap-6">
             <div className="flex-1 bg-[#222831] p-6 rounded-2xl">
-                <div className="flex gap-2 items-center text-3xl">
+                <div className="flex gap-2 items-center text-2xl">
                     <IdentificationIcon className="w-10" />
                     <span>Analiza los datos de tu estudiante</span>
                 </div>
                 <Form onSubmit={handleSubmit} action={() => {}}>
-                    <h3 className="text-xl mt-2 mb-2">Edad</h3>
+                    <h3 className="text-lg mt-2 mb-2">Edad</h3>
                     <input name="age" placeholder="Indica la edad" className="bg-[#393E46] rounded-md p-2 w-50" type="number" min="5" max="100" required />
-                    <h3 className="text-xl mt-2 mb-2">Sexo</h3>
+                    <h3 className="text-lg mt-2 mb-2">Sexo</h3>
                     <select name="gender" value={selectedOption} onChange={handleChange} className="bg-[#393E46] rounded-md p-2">
                         {options.map((option) => (
                         <option key={option.value} value={option.value} className="bg-[#222831]">
@@ -59,11 +59,11 @@ export default function CustomForm() {
                         </option>
                         ))}
                     </select>
-                    <h3 className="text-xl mt-2 mb-2">Establecimiento educacional</h3>
+                    <h3 className="text-lg mt-2 mb-2">Establecimiento educacional</h3>
                     <input name="school" placeholder="Indica el establecimiento educacional" className="bg-[#393E46] rounded-md p-2 w-80" required />
-                    <h3 className="text-xl mt-2 mb-2">Promedio general (0-7)</h3>
+                    <h3 className="text-lg mt-2 mb-2">Promedio general (0-7)</h3>
                     <input name="generalAvg" placeholder="Indica el promedio general" className="bg-[#393E46] rounded-md p-2 w-80" type="number" min="0" max="7" step="0.1" required />
-                    <h3 className="text-xl mt-2 mb-2">Asistencia</h3>
+                    <h3 className="text-lg mt-2 mb-2">Asistencia</h3>
                     <div className="flex items-center gap-4">
                         <input
                             name="attendance"
@@ -80,7 +80,10 @@ export default function CustomForm() {
                         type="submit"
                         className="mt-4 bg-[#00ADB5] hover:bg-[#08c2cb] text-white px-4 py-2 rounded-md font-semibold transition-all"
                     >
-                        Analizar datos
+                        <div className="flex items-center gap-1">
+                            <DocumentMagnifyingGlassIcon className="w-6" />
+                            <span>Analizar datos</span>
+                        </div>
                     </button>
                 </Form>
             </div>
