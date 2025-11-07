@@ -1,9 +1,10 @@
+import type { D1Database } from "@cloudflare/workers-types";
 import { NextResponse } from "next/server";
 import { createUser } from "@/lib/db";
 
 export const runtime = "edge";
 
-export async function POST(req: Request, env: any) {
+export async function POST(req: Request, env: { usuarios: D1Database }) {
   const { email, password } = await req.json();
 
   if (!email || !password)

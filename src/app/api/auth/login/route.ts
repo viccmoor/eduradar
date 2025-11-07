@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
+import { D1Database } from "@cloudflare/workers-types";
 import { getUser } from "@/lib/db";
 import { SignJWT } from "jose";
 
 export const runtime = "edge";
 
-export async function POST(req: Request) {
+export async function POST(req: Request, context: { env: { usuarios: D1Database } }) {
+  const { env } = context;
   const { email, password } = await req.json();
-  const user = await getUser(email);
+  const user = await getUser(email, env);
 
   if (!user || user.password !== password) {
     return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 });
