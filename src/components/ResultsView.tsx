@@ -54,7 +54,7 @@ export default function ResultsView({ results }: { results: Results }) {
                 <ClipboardDocumentListIcon className="w-10" />
                 <span>Resultados del análisis</span>
             </div>
-            <p className="text-sm">⚠️ Disclaimer: El análisis entregado no representa la opinión de un experto y está sujeto a un margen de error, ya que se trata de una predicción probabilística basada en datos recopilados.</p>
+            <p className="text-sm">⚠️ Disclaimer: Este NO es un diagnóstico académico oficial. Consulta con tu tutor.</p>
             <h3 className="mt-3">Nivel de Riesgo</h3>
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
                 {results.riskLevel}
