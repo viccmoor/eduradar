@@ -8,6 +8,9 @@ interface Results {
     confidence: GLfloat;
     plan: string;
     threshold: GLfloat;
+    rocAuc: GLfloat;
+    f1: GLfloat;
+    precision: GLfloat;
 };
 
 export default function ResultsView({ results }: { results: Results }) {
@@ -82,8 +85,10 @@ export default function ResultsView({ results }: { results: Results }) {
                 {results.confidence}
             </label>
             <h3 className="mt-2">Indicador</h3>
-            <label className="flex items-center gap-2 bg-[#393E46] px-3 py-1 rounded-md text-sm">
-            {(() => {
+            <label className="flex flex-col bg-[#393E46] px-3 py-2 rounded-md text-sm gap-2">
+            {/* Semáforo + umbral */}
+            <div className="flex items-center gap-2">
+                {(() => {
                 const score = results.riskScore;
                 const threshold = results.threshold;
 
@@ -92,9 +97,15 @@ export default function ResultsView({ results }: { results: Results }) {
                 else if (score >= 0.5) colorEmoji = "🟡";
 
                 return colorEmoji;
-            })()}
+                })()}
+                <span>Umbral alto: {Number(results.threshold).toFixed(3)}</span>
+            </div>
+
+            {/* Métricas ROC-AUC | F1 | Precision */}
             <span>
-                Umbral alto: {Number(results.threshold).toFixed(3)}
+                ROC-AUC: {Number(results.rocAuc ?? 0).toFixed(3)} |{" "}
+                F1(opt): {Number(results.f1 ?? 0).toFixed(3)} |{" "}
+                Precision: {Number(results.precision ?? 0).toFixed(3)}
             </span>
             </label>
             <h3 className="mt-2">Plan de acción</h3>
