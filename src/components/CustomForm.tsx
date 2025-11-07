@@ -52,7 +52,10 @@ export default function CustomForm() {
                     <h3 className="text-lg mt-2 mb-2">Edad</h3>
                     <input name="age" placeholder="Indica la edad" className="bg-[#393E46] rounded-md p-2 w-50" type="number" min="5" max="100" required />
                     <h3 className="text-lg mt-2 mb-2">Sexo</h3>
-                    <select name="gender" value={selectedOption} onChange={handleChange} className="bg-[#393E46] rounded-md p-2">
+                    <select name="gender" value={selectedOption} onChange={handleChange} className="bg-[#393E46] rounded-md p-2" required>
+                        <option value="" disabled>
+                            Selecciona una opción
+                        </option>
                         {options.map((option) => (
                         <option key={option.value} value={option.value} className="bg-[#222831]">
                             {option.label}
