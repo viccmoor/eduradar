@@ -5,7 +5,7 @@ import { jsPDF } from "jspdf";
 interface Results {
     riskLevel: string;
     riskScore: GLfloat;
-    confidence: string;
+    confidence: GLfloat;
     plan: string;
 };
 
@@ -19,31 +19,44 @@ export default function ResultsView({ results }: { results: Results }) {
         }
     }, [results]);
 
+    function removeEmojis(text: string) {
+        return text.replace(
+            /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]|\uFE0F)/g,
+            ""
+        );
+    }
+
     const downloadPdf = () => {
         const doc = new jsPDF();
+
         doc.setFontSize(18);
         doc.setFont("helvetica", "bold");
-        doc.text("Resultados del Análisis", 100, 20, { align: "center" });
+        doc.text("Resultados del Análisis", 105, 20, { align: "center" });
 
         doc.setFontSize(12);
+        doc.setFont("helvetica", "bold");
         doc.text("Nivel de Riesgo:", 14, 35);
-        doc.setFont("helvetica", "regular");
-        doc.text(results.riskLevel, 60, 35);
+        doc.setFont("helvetica", "normal");
+        doc.text(removeEmojis(results.riskLevel), 60, 35);
 
-         doc.setFont("helvetica", "bold");
+        doc.setFont("helvetica", "bold");
         doc.text("Puntaje de Riesgo:", 14, 45);
-        doc.setFont("helvetica", "regular");
-        doc.text(String(results.riskScore), 60, 45);
+        doc.setFont("helvetica", "normal");
+        doc.text(removeEmojis(String(results.riskScore)), 60, 45);
 
         doc.setFont("helvetica", "bold");
         doc.text("Puntaje de Credibilidad:", 14, 60);
-        doc.setFont("helvetica", "regular");
-        doc.text(doc.splitTextToSize(results.confidence, 180), 14, 60);
+        doc.setFont("helvetica", "normal");
+        const confidenceLines = doc
+            .splitTextToSize(removeEmojis(String(results.confidence)), 180);
+        doc.text(confidenceLines, 70, 60);
 
         doc.setFont("helvetica", "bold");
         doc.text("Plan de acción:", 14, 90);
-        doc.setFont("helvetica", "regular");
-        doc.text(doc.splitTextToSize(results.plan, 180), 14, 98);
+        doc.setFont("helvetica", "normal");
+        const planLines = doc
+            .splitTextToSize(removeEmojis(results.plan), 180);
+        doc.text(planLines, 14, 98);
 
         doc.save("resultados_analisis.pdf");
     };
