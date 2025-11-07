@@ -21,7 +21,7 @@ export default function Sidebar({ isOpen, toggle }: { isOpen: boolean; toggle: (
             className="rounded-md"
           />
           {isOpen && (
-            <Link href="#" className="font-semibold tracking-wide whitespace-nowrap">
+            <Link href=".." className="font-semibold tracking-wide whitespace-nowrap">
                 EduRadar
             </Link>
           )}
@@ -36,7 +36,7 @@ export default function Sidebar({ isOpen, toggle }: { isOpen: boolean; toggle: (
             ${isOpen ? "pl-6 pr-4" : "px-3"}`}
           >
             <BookOpenIcon className="w-5 h-5" />
-            {isOpen && <Link href="#" className="whitespace-nowrap">Predicción</Link>}
+            {isOpen && <Link href="dashboard" className="whitespace-nowrap">Predicción</Link>}
           </button>
 
           <button
