@@ -7,6 +7,7 @@ interface Results {
     riskScore: GLfloat;
     confidence: GLfloat;
     plan: string;
+    threshold: GLfloat;
 };
 
 export default function ResultsView({ results }: { results: Results }) {
@@ -79,6 +80,22 @@ export default function ResultsView({ results }: { results: Results }) {
             <h3 className="mt-2">Puntaje de Credibilidad</h3>
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
                 {results.confidence}
+            </label>
+            <h3 className="mt-2">Indicador</h3>
+            <label className="flex items-center gap-2 bg-[#393E46] px-3 py-1 rounded-md text-sm">
+            {(() => {
+                const score = results.riskScore;
+                const threshold = results.threshold;
+
+                let colorEmoji = "🟢";
+                if (score >= threshold) colorEmoji = "🔴";
+                else if (score >= 0.5) colorEmoji = "🟡";
+
+                return colorEmoji;
+            })()}
+            <span>
+                Umbral alto: {Number(results.threshold).toFixed(3)}
+            </span>
             </label>
             <h3 className="mt-2">Plan de acción</h3>
             <textarea

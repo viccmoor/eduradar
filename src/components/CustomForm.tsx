@@ -8,7 +8,7 @@ import ResultsView from "@/components/ResultsView";
 export default function CustomForm() {
     const [selectedOption, setSelectedOption] = useState("");
     const [attendanceValue, setAttendanceValue] = useState(90);
-    const [results, setResults] = useState({ riskLevel: "Sin datos", riskScore: 0, confidence: 0, plan: "Sin datos" });
+    const [results, setResults] = useState({ riskLevel: "Sin datos", riskScore: 0, confidence: 0, plan: "Sin datos", threshold: 0 });
     const options = [
         { label: "Masculino", value: "male" },
         { label: "Femenino", value: "female" },
@@ -47,12 +47,17 @@ export default function CustomForm() {
             body: JSON.stringify(user_data),
         });
         const data = await response.json();
+        const response_thr = await fetch("http://localhost:8000/threshold", {
+            method: "GET",
+        });
+        const data_thr = await response_thr.json();
 
         setResults({
             riskLevel: data.nivel_riesgo,
             riskScore: data.riesgo_desercion,
             confidence: data.confianza,
             plan: data.recomendacion,
+            threshold: data_thr.threshold || 0.5,
         });
     };
 
