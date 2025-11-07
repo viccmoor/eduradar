@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { BookOpenIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function Sidebar({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) {
   return (
     <div className="flex h-screen relative">
       <div
@@ -32,7 +29,7 @@ export default function Sidebar() {
 
         <div className="flex flex-col justify-between h-full p-4">
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => toggle() }
             className={`flex items-center gap-3 text-[#F6F4EB]
             bg-transparent rounded-xl p-2 transition-all duration-300
             hover:bg-white/10 
