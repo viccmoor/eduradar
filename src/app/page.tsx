@@ -17,9 +17,9 @@ export default function Home() {
       <p className="text-lg mt-2">
         Analiza, comprende y potencia el aprendizaje.
       </p>
-      <Link href="login">
+      <Link href="dashboard">
         <button className="bg-[#00ADB5] mt-3 p-2 w-50 rounded-xl font-bold hover:bg-[#006F75]">
-          Inicia sesión
+          Ir al dashboard
         </button>
       </Link>
     </div>

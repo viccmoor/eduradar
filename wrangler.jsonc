@@ -14,13 +14,6 @@
 	"observability": {
 		"enabled": true
 	},
-	"d1_databases": [
-		{
-			"binding": "usuarios",
-			"database_name": "usuarios",
-			"database_id": "a00916fa-c3c8-4fc1-a11b-132a57f76251"
-		}
-	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
