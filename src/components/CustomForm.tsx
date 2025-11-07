@@ -8,7 +8,7 @@ import ResultsView from "@/components/ResultsView";
 export default function CustomForm() {
     const [selectedOption, setSelectedOption] = useState("");
     const [attendanceValue, setAttendanceValue] = useState(90);
-    const [results, setResults] = useState({ riskLevel: "Sin datos", variables: "Sin datos", plan: "Sin datos" });
+    const [results, setResults] = useState({ riskLevel: "Sin datos", riskScore: 0, variables: "Sin datos", plan: "Sin datos" });
     const options = [
         { label: "Masculino", value: "male" },
         { label: "Femenino", value: "female" },
@@ -35,7 +35,8 @@ export default function CustomForm() {
         const data = await response.json();
         */
         setResults({
-            riskLevel: "1.0",
+            riskLevel: "ALTO",
+            riskScore: 0.89,
             variables: "Las variables son...",
             plan: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id distinctio deleniti atque earum aut reiciendis asperiores, veniam assumenda quaerat repellendus ipsa praesentium a tempore recusandae sed dolor voluptatibus nostrum nemo",
         });

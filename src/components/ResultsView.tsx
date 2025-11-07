@@ -4,6 +4,7 @@ import { jsPDF } from "jspdf";
 
 interface Results {
     riskLevel: string;
+    riskScore: GLfloat;
     variables: string;
     plan: string;
 };
@@ -29,10 +30,15 @@ export default function ResultsView({ results }: { results: Results }) {
         doc.setFont("helvetica", "regular");
         doc.text(results.riskLevel, 60, 35);
 
-        doc.setFont("helvetica", "bold");
-        doc.text("Variables y patrones detectados:", 14, 50);
+         doc.setFont("helvetica", "bold");
+        doc.text("Puntaje de Riesgo:", 14, 45);
         doc.setFont("helvetica", "regular");
-        doc.text(doc.splitTextToSize(results.variables, 180), 14, 58);
+        doc.text(String(results.riskScore), 60, 45);
+
+        doc.setFont("helvetica", "bold");
+        doc.text("Variables y patrones detectados:", 14, 60);
+        doc.setFont("helvetica", "regular");
+        doc.text(doc.splitTextToSize(results.variables, 180), 14, 68);
 
         doc.setFont("helvetica", "bold");
         doc.text("Plan de acción:", 14, 90);
@@ -52,6 +58,10 @@ export default function ResultsView({ results }: { results: Results }) {
             <h3 className="mt-3">Nivel de Riesgo</h3>
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
                 {results.riskLevel}
+            </label>
+            <h3 className="mt-3">Puntaje de Riesgo</h3>
+            <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">
+                {results.riskScore}
             </label>
             <h3 className="mt-2">Variables y patrones detectados</h3>
             <label className="flex bg-[#393E46] px-3 py-1 rounded-md text-sm">

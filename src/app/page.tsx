@@ -18,7 +18,7 @@ export default function Home() {
         Analiza, comprende y potencia el aprendizaje.
       </p>
       <Link href="dashboard">
-        <button className="bg-[#00ADB5] mt-3 p-2 w-50 rounded-xl font-bold hover:bg-[#006F75]">
+        <button className="bg-gradient-to-r from-[#00ADB5] to-[#1B5B5F] mt-3 p-2 w-50 rounded-xl font-bold hover:bg-[#006F75]">
           Ir al dashboard
         </button>
       </Link>
