@@ -5,7 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "eduradar",
-	"main": "src/app/page.tsx",
+	"main": ".next/server/pages",
 	"compatibility_date": "2025-03-01",
 	"compatibility_flags": [
 		"nodejs_compat",
@@ -16,7 +16,7 @@
 	},
 	"d1_databases": [
 		{
-			"binding": "DB",
+			"binding": "usuarios",
 			"database_name": "usuarios",
 			"database_id": "a00916fa-c3c8-4fc1-a11b-132a57f76251"
 		}

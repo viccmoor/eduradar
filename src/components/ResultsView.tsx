@@ -1,8 +1,27 @@
 import { ClipboardDocumentListIcon } from "@heroicons/react/24/solid";
+import { jsPDF } from "jspdf";
 
 export default function ResultsView() {
+    const nivelRiesgo = "Alto";
+    const variables = "Uso excesivo de palabras negativas, tono urgente, correlación con patrones de riesgo anteriores.";
+    const planAccion = "1. Revisar el contexto de las interacciones.\n2. Implementar revisión humana.\n3. Notificar a moderadores.";
+
     const downloadPdf = () => {
         const doc = new jsPDF();
+        doc.setFontSize(18);
+        doc.text("Resultados del Análisis", 14, 20);
+
+        doc.setFontSize(12);
+        doc.text("Nivel de Riesgo:", 14, 35);
+        doc.text(nivelRiesgo, 60, 35);
+
+        doc.text("Variables y patrones detectados:", 14, 50);
+        doc.text(doc.splitTextToSize(variables, 180), 14, 58);
+
+        doc.text("Plan de acción:", 14, 90);
+        doc.text(doc.splitTextToSize(planAccion, 180), 14, 98);
+
+        doc.save("resultados_analisis.pdf");
     };
 
     return (
