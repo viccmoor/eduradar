@@ -7,7 +7,8 @@ import ResultsView from "@/components/ResultsView";
 
 export default function CustomForm() {
     const [selectedOption, setSelectedOption] = useState("");
-    const [attendanceValue, setAttendanceValue] = useState(0);
+    const [attendanceValue, setAttendanceValue] = useState(90);
+    const [results, setResults] = useState({ riskLevel: "Sin datos", variables: "Sin datos", plan: "Sin datos" });
     const options = [
         { label: "Masculino", value: "male" },
         { label: "Femenino", value: "female" },
@@ -23,8 +24,21 @@ export default function CustomForm() {
         setAttendanceValue(Number(event.target.value));
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("Opción elegida:", selectedOption);
+    async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        /*
+        const response = await fetch("api", {
+            method: "POST",
+            body: formData,
+        });
+        const data = await response.json();
+        */
+        setResults({
+            riskLevel: "1.0",
+            variables: "Las variables son...",
+            plan: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id distinctio deleniti atque earum aut reiciendis asperiores, veniam assumenda quaerat repellendus ipsa praesentium a tempore recusandae sed dolor voluptatibus nostrum nemo",
+        });
     };
 
     return (
@@ -70,7 +84,7 @@ export default function CustomForm() {
                     </button>
                 </Form>
             </div>
-            <ResultsView />
+            <ResultsView results={results}/>
         </div>
     )
 }
