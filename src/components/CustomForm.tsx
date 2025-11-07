@@ -29,7 +29,7 @@ export default function CustomForm() {
             </div>
             <Form onSubmit={handleSubmit} action={() => {}}>
                 <h3 className="text-xl mt-2 mb-2">Edad</h3>
-                <input name="age" placeholder="Indica la edad" className="bg-[#393E46] rounded-md p-2 w-50" type="number" min="5" max="100"/>
+                <input name="age" placeholder="Indica la edad" className="bg-[#393E46] rounded-md p-2 w-50" type="number" min="5" max="100" required />
                 <h3 className="text-xl mt-2 mb-2">Sexo</h3>
                 <select name="gender" value={selectedOption} onChange={handleChange} className="bg-[#393E46] rounded-md p-2">
                     {options.map((option) => (
@@ -39,11 +39,11 @@ export default function CustomForm() {
                     ))}
                 </select>
                 <h3 className="text-xl mt-2 mb-2">Establecimiento educacional</h3>
-                <input name="school" placeholder="Indica el establecimiento educacional" className="bg-[#393E46] rounded-md p-2 w-80"/>
+                <input name="school" placeholder="Indica el establecimiento educacional" className="bg-[#393E46] rounded-md p-2 w-80" required />
                 <h3 className="text-xl mt-2 mb-2">Promedio general (0-7)</h3>
-                <input name="generalAvg" placeholder="Indica el promedio general" className="bg-[#393E46] rounded-md p-2 w-80" type="number" min="0" max="7" step="0.1"/>
+                <input name="generalAvg" placeholder="Indica el promedio general" className="bg-[#393E46] rounded-md p-2 w-80" type="number" min="0" max="7" step="0.1" required />
                 <h3 className="text-xl mt-2 mb-2">Asistencia</h3>
-                <input name="attendance" type="range" className="accent-[#00ADB5] w-80 block"/>
+                <input name="attendance" type="range" className="accent-[#00ADB5] w-80 block" required/>
                 <button
                     type="submit"
                     className="mt-4 bg-[#00ADB5] hover:bg-[#08c2cb] text-white px-4 py-2 rounded-md font-semibold transition-all"
